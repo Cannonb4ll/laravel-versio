@@ -4,8 +4,8 @@ namespace LaravelVersio\Modules;
 
 use LaravelVersio\Core;
 
-class Domain extends Core{
-
+class Domain extends Core
+{
     /**
      * List active domains
      *
@@ -37,10 +37,9 @@ class Domain extends Core{
     /**
      * List a single domain
      *
-     * @param null $domain
-     * @param null $tld
+     * @param string $domain
+     * @param string $tld
      * @return mixed
-     * @throws \Exception
      */
     public function listSingle($domain = null, $tld = null)
     {
@@ -57,10 +56,9 @@ class Domain extends Core{
     /**
      * Check if domain is free
      *
-     * @param null $domain
-     * @param null $tld
+     * @param string $domain
+     * @param string $tld
      * @return array|Collection
-     * @throws \Exception
      */
     public function isFree($domain = null, $tld = null)
     {
@@ -74,14 +72,22 @@ class Domain extends Core{
         return $send;
     }
 
-    public function setNameservers($domain = null, $tld = null, $nameservers = [])
+    /**
+     * Update nameservers for a domain
+     *
+     * @param string $domain
+     * @param string $tld
+     * @param array $nameservers
+     * @return array|\Illuminate\Support\Collection
+     */
+    public function updateNameservers($domain = null, $tld = null, array $nameservers = [])
     {
         $this->command = 'DomainsCheckAvailability';
 
         $this->options['domain'] = $domain;
         $this->options['tld'] = $tld;
 
-        foreach($nameservers as $key => $nameserver){
+        foreach ($nameservers as $key => $nameserver) {
             $this->options[$key] = $nameserver;
         }
 
@@ -93,10 +99,9 @@ class Domain extends Core{
     /**
      * List DNS records for domain
      *
-     * @param null $domain
-     * @param null $tld
+     * @param string $domain
+     * @param string $tld
      * @return static
-     * @throws \Exception
      */
     public function dnsRecords($domain = null, $tld = null)
     {
@@ -111,19 +116,64 @@ class Domain extends Core{
     }
 
     /**
+     * Add a DNS record
+     *
+     * @param string $domain
+     * @param string $tld
+     * @param array $data
+     * @return string record_id
+     */
+    public function storeDnsRecord($domain, $tld, array $data = [])
+    {
+        $this->command = 'DomainsDNSAddRecord';
+
+        $this->options['domain'] = $domain;
+        $this->options['tld'] = $tld;
+        $this->options['name'] = $data['name'];
+        $this->options['type'] = $data['type'];
+        $this->options['value'] = $data['value'];
+        $this->options['prio'] = $data['prio'];
+        $this->options['ttl'] = $data['ttl'];
+
+        $send = $this->send();
+
+        return $send->get('record_id');
+    }
+
+    /**
+     * Destroy a DNS record
+     *
+     * @param string $domain
+     * @param string $tld
+     * @param integer $record_id
+     * @return array|\Illuminate\Support\Collection
+     */
+    public function destroyDnsRecord($domain, $tld, $record_id)
+    {
+        $this->command = 'DomainsDNSDeleteRecord';
+
+        $this->options['domain'] = $domain;
+        $this->options['tld'] = $tld;
+        $this->options['id'] = $record_id;
+
+        $send = $this->send();
+
+        return $send;
+    }
+
+    /**
      * Switch DNS on/off
      *
-     * @param null $domain
-     * @param null $tld
+     * @param string $domain
+     * @param string $tld
      * @param bool $state TRUE = DNS on | FALSE = DNS OFF
      * @return array|Collection
-     * @throws \Exception
      */
-    public function switchDns($domain = null, $tld = null, $state = false)
+    public function switchDns($domain = null, $tld = null, bool $state = false)
     {
-        if($state) {
+        if ($state) {
             $this->command = 'DomainsDNSOn';
-        }else{
+        } else {
             $this->command = 'DomainsDNSOff';
         }
 

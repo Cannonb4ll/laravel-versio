@@ -16,9 +16,6 @@
   "autoload": {
     "psr-0": {
       "LaravelVersio": "src/"
-    },
-    "files": [
-      "src/Utilities/helpers.php"
-    ]
+    }
   }
 }
