@@ -1,0 +1,24 @@
+{
+  "name": "cannonb4ll/laravel-versio",
+  "version": "1.0",
+  "authors": [
+    {
+      "name": "Dennis Smink",
+      "email": "dennissmink@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "^5.0",
+    "guzzlehttp/guzzle": "~5.3|^6.0"
+  },
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-0": {
+      "LaravelVersio": "src/"
+    },
+    "files": [
+      "src/Utilities/helpers.php"
+    ]
+  }
+}
