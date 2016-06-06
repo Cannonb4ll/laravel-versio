@@ -37,7 +37,7 @@ $nameservers = [
 ];
 
 - $versio->domains()->dnsRecords('domain', 'tld'); // List all DNS records
-- $versio->domains()->storeDnsRecord('domain', 'tld'); // Store a new DNS record, returns record id, array structure:
+- $versio->domains()->storeDnsRecord('domain', 'tld', $array); // Store a new DNS record, returns record id, array structure:
 [
     'name' => 'test',
     'type' => 'A',
