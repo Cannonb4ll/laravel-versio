@@ -20,6 +20,8 @@ VERSIO_PASS=
 Then you can use the class like this:
 
 ```
+use LaravelVersio\Versio;
+
 $versio = new Versio;
 ```
 
