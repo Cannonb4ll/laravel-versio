@@ -28,6 +28,19 @@ $versio = new Versio;
 ## Commands:
 
 ```
+- $versio->domains()->register('domain', 'tld', ['ns1.domain.com', 'ns2.domain.com'], $contactId); // Register a domain, $contactId is required!
+- $versio->domain_contacts()->create([
+    'initials', // REQUIRED
+    'lastname', // REQUIRED
+    'email', // REQUIRED
+    'phone', // REQUIRED
+    'street', // REQUIRED
+    'hnr', // REQUIRED
+    'hnradd',
+    'zipcode', // REQUIRED
+    'city', // REQUIRED
+    'country' // REQUIRED (Syntax: NL, BE, UK etc)
+]); // Create a domain contact, returns contact ID if succesfull.
 - $versio->domains()->listActive(); // List active domains
 - $versio->domains()->listInactive(); // List inactive domains
 - $versio->domains()->listSingle('domain', 'tld'); // List a single domain

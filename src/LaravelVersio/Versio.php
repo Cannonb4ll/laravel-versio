@@ -2,12 +2,13 @@
 
 namespace LaravelVersio;
 
-use LaravelVersio\Modules\Cloudbox;
-use LaravelVersio\Modules\Dedicated;
-use LaravelVersio\Modules\Domain;
-use LaravelVersio\Modules\Reseller;
 use LaravelVersio\Modules\Ssl;
+use LaravelVersio\Modules\Domain;
+use LaravelVersio\Modules\Cloudbox;
+use LaravelVersio\Modules\Reseller;
+use LaravelVersio\Modules\Dedicated;
 use LaravelVersio\Modules\Webhosting;
+use LaravelVersio\Modules\DomainContact;
 
 class Versio extends Core
 {
@@ -17,6 +18,14 @@ class Versio extends Core
     public function domains()
     {
         return new Domain;
+    }
+
+    /**
+     * @return DomainContact
+     */
+    public function domain_contacts()
+    {
+        return new DomainContact;
     }
 
     /**

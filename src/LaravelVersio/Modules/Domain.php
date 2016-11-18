@@ -6,6 +6,21 @@ use LaravelVersio\Core;
 
 class Domain extends Core
 {
+    public function register($domain = null, $tld = null, $nameservers = [], $contactId)
+    {
+        $this->command = 'DomainsRegister';
+
+        $this->options['domain'] = $domain;
+        $this->options['tld'] = $tld;
+        $this->options['contact_id'] = $contactId;
+
+        foreach($nameservers as $key => $nameserver){
+            $this->options['ns' . ($key + 1)] = $nameserver;
+        }
+
+        return $this->send();
+    }
+
     /**
      * List active domains
      *
@@ -91,9 +106,7 @@ class Domain extends Core
             $this->options[$key] = $nameserver;
         }
 
-        $send = $this->send();
-
-        return $send;
+        return $this->send();
     }
 
     /**
