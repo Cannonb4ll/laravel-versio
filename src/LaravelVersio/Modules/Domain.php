@@ -82,9 +82,7 @@ class Domain extends Core
         $this->options['domain'] = $domain;
         $this->options['tld'] = $tld;
 
-        $send = $this->send();
-
-        return $send;
+        return $this->send()->get('success') ? true : false;
     }
 
     /**
