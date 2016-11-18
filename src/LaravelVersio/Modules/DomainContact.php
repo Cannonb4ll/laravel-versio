@@ -23,6 +23,12 @@ class DomainContact extends Core
         $this->options['city'] = $data->get('city');
         $this->options['country'] = $data->get('country');
 
-        return $this->send();
+        $response = $this->send();
+
+        if($response->get('success')){
+            return $response->get('contact_id');
+        }
+
+        return $response;
     }
 }
