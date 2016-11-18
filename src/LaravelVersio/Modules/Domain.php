@@ -6,13 +6,16 @@ use LaravelVersio\Core;
 
 class Domain extends Core
 {
-    public function register($domain = null, $tld = null, $nameservers = [], $contactId)
+    public function register($domain = null, $tld = null, $nameservers = [], $contactId, $years = 1, $park = 0)
     {
         $this->command = 'DomainsRegister';
 
         $this->options['domain'] = $domain;
         $this->options['tld'] = $tld;
         $this->options['contact_id'] = $contactId;
+
+        $this->options['years'] = $years;
+        $this->options['park'] = $park;
 
         foreach($nameservers as $key => $nameserver){
             $this->options['ns' . ($key + 1)] = $nameserver;

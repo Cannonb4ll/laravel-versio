@@ -32,10 +32,10 @@ $versio->sandboxMode(true);
 ## Commands:
 
 ```
-- $versio->domains()->register('domain', 'tld', ['ns1.domain.com', 'ns2.domain.com'], $contactId); // Register a domain, $contactId is required!
+- $versio->domains()->register('domain', 'tld', ['ns1.domain.com', 'ns2.domain.com'], $contactId, $years = 1, $park = 0); // Register a domain, $contactId is required!
 - $versio->domain_contacts()->create([
     'initials', // REQUIRED
-    'lastname', // REQUIRED
+    'surname', // REQUIRED
     'email', // REQUIRED
     'phone', // REQUIRED
     'street', // REQUIRED
