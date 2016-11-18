@@ -17,6 +17,7 @@ class Core
      * Private
      */
     private $guzzle;
+    private $sandbox = false;
 
     /*
      * Protected
@@ -29,12 +30,17 @@ class Core
         $this->guzzle = new Client();
     }
 
+    public function sandboxMode($bool)
+    {
+        $this->sandbox = $bool;
+    }
+
     public function send()
     {
         $options = [
             'klantId' => env('VERSIO_ID'),
             'klantPw' => env('VERSIO_PASS'),
-            'sandBox' => false,
+            'sandBox' => $this->sandbox,
             'command' => $this->command
         ];
 

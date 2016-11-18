@@ -23,6 +23,10 @@ Then you can use the class like this:
 use LaravelVersio\Versio;
 
 $versio = new Versio;
+
+// Enable sandbox mode like this:
+
+$versio->sandboxMode(true);
 ```
 
 ## Commands:
